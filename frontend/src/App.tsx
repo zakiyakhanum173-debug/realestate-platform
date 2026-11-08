@@ -1,12 +1,14 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-import Home from "./pages/Home";
+import ProtectedRoute from "./components/ProtectedRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import PropertyDetail from "./pages/PropertyDetail";
-import Dashboard from "./pages/Dashboard";
-import AddProperty from "./pages/AddProperty";
-import ProtectedRoute from "./components/ProtectedRoute";
+
+const Home = lazy(() => import("./pages/Home"));
+const PropertyDetail = lazy(() => import("./pages/PropertyDetail"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const AddProperty = lazy(() => import("./pages/AddProperty"));
 
 function Navbar() {
   const { user, logout } = useAuth();
@@ -37,15 +39,17 @@ export default function App() {
     <AuthProvider>
       <BrowserRouter>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/property/:id" element={<PropertyDetail />} />
-          <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-          <Route path="/add-property" element={<ProtectedRoute><AddProperty /></ProtectedRoute>} />
-        </Routes>
+        <Suspense fallback={<p className="p-6">Loading...</p>}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/property/:id" element={<PropertyDetail />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/add-property" element={<ProtectedRoute><AddProperty /></ProtectedRoute>} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </AuthProvider>
-  );   
+  );
 }

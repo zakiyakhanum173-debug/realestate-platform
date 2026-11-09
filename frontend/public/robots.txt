@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://YOUR-VERCEL-URL/sitemap.xml
+Sitemap: https://realestate-platform-gray.vercel.app/sitemap.xml

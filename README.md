@@ -20,3 +20,7 @@ IMAGEKIT_PUBLIC_KEY, IMAGEKIT_PRIVATE_KEY, IMAGEKIT_URL_ENDPOINT
 
 ## Env (frontend/.env)
 VITE_API_URL=http://localhost:5000/api
+
+## Live Demo
+- Frontend: https://realestate-platform-gray.vercel.app
+- Backend API: https://realestate-platform-im96.onrender.com/api/health

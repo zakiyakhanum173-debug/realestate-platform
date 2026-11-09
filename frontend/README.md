@@ -73,3 +73,6 @@ export default defineConfig([
 ])
 
 ```
+## Live Demo
+- Frontend: https://realestate-platform-gray.vercel.app
+- Backend API: https://realestate-platform-im96.onrender.com/api/health
